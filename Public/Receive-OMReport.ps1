@@ -137,8 +137,26 @@ function Receive-OMReport {
             $Server.ExtensionData.GetReport($Id).DownloadReport($MemoryStream, "CSV")
             $MemoryStream.Seek(0, "Begin") | Out-Null
             $ReadStream = New-Object System.IO.StreamReader($MemoryStream)
-            
+            $HeaderRow = 0
+
             while ($ReadStream.Peek() -ne -1) {
+                if ($HeaderRow -eq 0) {
+                    # Fix duplicate header row names
+                    $Headers = $ReadStream.ReadLine()
+                    $Headers = $Headers.Split(",").Trim('"')
+                    
+                    for ($i=0; $i -lt $Headers.Count; $i++) {
+                        #Skip first column.
+                        if ($i -eq 0) { 
+                            Continue 
+                        }
+                        # If in any other column is a dupe, give it a unique name
+                        if ($Headers[0..($i-1)] -contains $Headers[$i]) {
+                            $Headers[$i] = "$($Headers[$i])_$i"
+                        }
+                    }
+                    $HeaderRow = 1
+                }
                 $Prog = [Math]::Round(($ReadStream.BaseStream.Position / $ReadStream.BaseStream.Length) * 100, 2)
                 Write-Progress -Activity "Receiving Report" -Status "$Prog% Complete:" -PercentComplete $Prog
                 $Output += $ReadStream.ReadLine()
@@ -149,7 +167,7 @@ function Receive-OMReport {
             $ReadStream.Dispose()
             $MemoryStream.Close()
             $MemoryStream.Dispose()
-            $Output | ConvertFrom-Csv
+            $Output | ConvertFrom-Csv -Header $Headers
         }
     } catch {
         $Err = $_
