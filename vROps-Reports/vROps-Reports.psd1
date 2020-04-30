@@ -12,7 +12,7 @@
 RootModule = 'vROps-Reports.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,10 +27,10 @@ Author = 'Ryan Kowalewski'
 CompanyName = ''
 
 # Copyright statement for this module
-Copyright = '(c) 2018 Ryan Kowalewski. All rights reserved.'
+Copyright = '(c) 2020 Ryan Kowalewski. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'PowerCLI helper for downloading vROps reports.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -106,10 +106,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/ryan-jan/vROps-Reports/blob/master/LICENCE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/ryan-jan/vROps-Reports'
 
         # A URL to an icon representing this module.
         # IconUri = ''
