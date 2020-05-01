@@ -9,7 +9,7 @@ Reports can be downloaded to a file (`.csv` or `.pdf`) or as a PowerShell object
 ## Installation via PowerShell Gallery
 
 ```powershell
-Install Module "vROps-Reports" -Scope "CurrentUser"
+Install-Module "vROps-Reports" -Scope "CurrentUser"
 Import-Module "vROps-Reports"
 ```
 
