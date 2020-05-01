@@ -1,0 +1,12 @@
+-
+  branches:
+    only:
+      - master
+  image:
+      - Visual Studio 2019
+  environment:
+    PSGALLERY_KEY:
+      secure: oy2bgbtqhsqxsvsqugba4kegorf6r2vevcqb6ubdufrh7i
+  build: off
+  test_script:
+    - ps: .\Utils\Deploy.ps1

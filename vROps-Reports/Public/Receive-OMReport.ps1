@@ -113,7 +113,7 @@ function Receive-OMReport {
         }
 
         if ($CSV) {
-            Write-Output "Receiving report $Id, please wait..."
+            Write-Host "Receiving report $Id, please wait..."
             if (!($Path.EndsWith(".csv", "CurrentCultureIgnoreCase"))) {
                 $Path = "$Path.csv"
             }
@@ -123,7 +123,7 @@ function Receive-OMReport {
             $FileStream.Dispose()
             Write-Host "Report received successfully to $Path"
         } elseif ($PDF) {
-            Write-Output "Receiving report $Id, please wait..."
+            Write-Host "Receiving report $Id, please wait..."
             if (!($Path.EndsWith(".pdf", "CurrentCultureIgnoreCase"))) {
                 $Path = "$Path.pdf"
             }
