@@ -27,12 +27,14 @@ function Get-OMReport {
     [CmdletBinding()]
     param (
         $Server = $global:DefaultOMServers[0],
-        $Id
+        [string[]] $Id
     )
 
     try {
         if ($Id) {
-            $Server.ExtensionData.GetReport($Id)
+            foreach ($RepId in $Id) {
+                $Server.ExtensionData.GetReport($RepId)
+            }
         } else {
             $Server.ExtensionData.GetReports().Report
         }

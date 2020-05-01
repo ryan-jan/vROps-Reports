@@ -37,7 +37,7 @@ function New-OMReport {
         [Parameter(
             Mandatory = $true
         )]
-        [Object]$Resource,
+        [Object[]]$Resource,
 
         [Parameter(
             Mandatory = $true
@@ -51,11 +51,13 @@ function New-OMReport {
     )
 
     try {
-        $Report = New-Object VMware.VimAutomation.VROps.Views.Report
-        $Report.ResourceId = $Resource.Id
-        $Report.ReportDefinitionId = $ReportDefinition.Id
-        $Report.TraversalSpec = $TraversalSpec
-        $Server.ExtensionData.CreateReport($Report)
+        foreach ($Res in $Resource) {
+            $Report = New-Object VMware.VimAutomation.VROps.Views.Report
+            $Report.ResourceId = $Res.Id
+            $Report.ReportDefinitionId = $ReportDefinition.Id
+            $Report.TraversalSpec = $TraversalSpec
+            $Server.ExtensionData.CreateReport($Report)
+        }
     } catch {
         $Err = $_
         Write-Error $Err

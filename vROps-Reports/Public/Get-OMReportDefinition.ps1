@@ -53,14 +53,15 @@ function Get-OMReportDefinition {
         [Parameter(
             ParameterSetName = "SearchById"
         )]
-        [String]$Id
+        [String[]]$Id
     )
 
     try {
+        $RepDefs = $Server.ExtensionData.GetReportDefinitions($null, $null, $Name).ReportDefinition
         if ($Id) {
-            $Server.ExtensionData.GetReportDefinition($Id)
+            $RepDefs.Where({$_.Id -in $Id})
         } else {
-            $Server.ExtensionData.GetReportDefinitions($null, $null, $Name).ReportDefinition
+            $RepDefs
         }
     } catch {
         $Err = $_
