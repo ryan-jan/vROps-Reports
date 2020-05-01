@@ -3,6 +3,9 @@
 This is a helper module which uses the vROps API and PowerCLI to generate and download vROps reports.
 Reports can be downloaded to a file (`.csv` or `.pdf`) or as a PowerShell object for further manipulation.
 
+[![appveyor](https://img.shields.io/appveyor/ci/ryan-jan/vrops-reports?style=flat-square&logo=appveyor)](https://ci.appveyor.com/project/ryan-jan/vrops-reports)
+[![psgallery](https://img.shields.io/powershellgallery/v/vrops-reports?style=flat-square&logo=powershell)](https://www.powershellgallery.com/packages/vROps-Reports)
+
 ## Installation via PowerShell Gallery
 
 ```powershell

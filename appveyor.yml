@@ -1,12 +1,17 @@
+image:
+  - Visual Studio 2019
+build: off
+install:
+  - ps: Install-Module -Name "VMware.PowerCLI" -Scope "CurrentUser" -Force -Confirm:$false -AllowClobber
+environment:
+  PSGALLERY_KEY:
+    secure: l+zJpIFKB9YCs+rKYFJPaceULt0AZ/1XHmINwpFxb/BqBVhqsFBQ0+DNNTrkrYcR
+
+for:
+
 -
   branches:
     only:
       - master
-  image:
-      - Visual Studio 2019
-  environment:
-    PSGALLERY_KEY:
-      secure: oy2bgbtqhsqxsvsqugba4kegorf6r2vevcqb6ubdufrh7i
-  build: off
   test_script:
     - ps: .\Utils\Deploy.ps1
